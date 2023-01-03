@@ -1,0 +1,16 @@
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name localhost;
+
+    ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
+    ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
+        
+    ssl_protocols TLSv1.3;
+
+    root /etc/nginx/sites-available;
+
+    index index.html index.nginx-debian.html;
+
+}
