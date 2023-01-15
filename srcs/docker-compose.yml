@@ -1,20 +1,33 @@
 version: '3'
+
 services:
   nginx:
     build: ./requirements/nginx/.
+    image: nginx
     container_name: nginx
     ports:
       - '443:443'
     restart : on-failure
+    networks:
+      - inception
   mariadb:
     build: ./requirements/mariadb/.
+    image: mariadb
     container_name: mariadb
     ports:
       - '3306:3306'
     restart : on-failure
-
+    networks:
+      - inception
+  site:
+    build: ./requirements/bonus/site/.
+    image: shonjmoj.me
+    container_name: shonjmoj.me
+    ports:
+      - '3000:3000'
+    restart: on-failure
+    networks:
+      - inception
 networks:
-  default:
-    external:
-      name: network
-  
+  inception:
+    name : inception
