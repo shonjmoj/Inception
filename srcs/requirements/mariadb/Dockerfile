@@ -1,15 +1,18 @@
 FROM debian:buster
 
-COPY ./tools/database.sql /tmp/database.sql
+COPY ./tools/user.sql .
 
-COPY ./tools/script /tmp/script
+COPY ./tools/db.sql .
+
+COPY ./tools/script.sh .
 
 RUN apt-get update\
     && apt-get install mariadb-server -y \
     && service mysql start \
     && chown -R mysql:mysql /var/lib/mysql \
-    && mysql < /tmp/database.sql && mysql < /tmp/script
+    && bash script.sh \
+    && mysql wordpress_db < db.sql
 
-EXPOSE 3306
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
 CMD [ "mysqld_safe"]
