@@ -14,11 +14,21 @@ services:
     build: ./requirements/mariadb/.
     image: mariadb
     container_name: mariadb
-    ports:
-      - '3306:3306'
     restart : on-failure
     networks:
       - inception
+    volumes:
+      - wordpress_db:/var/lib/mysql
+  wordpress:
+    build: ./requirements/wordpress/.
+    image: wordpress
+    container_name: wordpress
+    ports:
+      - '9000:9000'
+    networks:
+      - inception
+    volumes:
+      - wordpress_files:/wordpress
   site:
     build: ./requirements/bonus/site/.
     image: shonjmoj.me
@@ -28,6 +38,13 @@ services:
     restart: on-failure
     networks:
       - inception
+
+volumes:
+  wordpress_db:
+    name : 'wordpress_db'
+  wordpress_files:
+    name : 'wordpress_files'
+
 networks:
   inception:
     name : inception
