@@ -18,7 +18,7 @@ services:
     networks:
       - inception
     volumes:
-      - wordpress_db:/var/lib/mysql
+      - wordpress_db:/var/lib/mysql/
   wordpress:
     build: ./requirements/wordpress/.
     image: wordpress
@@ -28,7 +28,7 @@ services:
     networks:
       - inception
     volumes:
-      - wordpress_files:/wordpress
+      - wordpress_files:/var/www/
   site:
     build: ./requirements/bonus/site/.
     image: shonjmoj.me
@@ -42,8 +42,16 @@ services:
 volumes:
   wordpress_db:
     name : 'wordpress_db'
+    driver_opts:
+      type : type
+      o: bind
+      device : /home/shonjmoj/data/wordpress_db
   wordpress_files:
     name : 'wordpress_files'
+    driver_opts:
+      type : none
+      o: bind
+      device : /home/shonjmoj/data/wordpress_files
 
 networks:
   inception:
