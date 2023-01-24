@@ -1,7 +1,0 @@
-CREATE DATABASE wordpress_db;
-
-CREATE USER 'shonjmoj'@'localhost' IDENTIFIED BY '123';
-GRANT ALL PRIVILEGES ON *.* TO 'shonjmoj'@'localhost' WITH GRANT OPTION;
-CREATE USER 'shonjmoj'@'%' IDENTIFIED BY '123';
-GRANT ALL PRIVILEGES ON *.* TO 'shonjmoj'@'%' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
