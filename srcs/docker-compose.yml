@@ -7,18 +7,38 @@ services:
     container_name: nginx
     ports:
       - '443:443'
+<<<<<<< HEAD
     restart : on-failure
     networks:
       - inception
+=======
+    restart: on-failure
+    networks:
+      - inception
+    env_file:
+      - .env
+    volumes:
+      - wordpress_files:/var/www/
+>>>>>>> docs : remove useless files and use env variables
   mariadb:
     build: ./requirements/mariadb/.
     image: mariadb
     container_name: mariadb
+<<<<<<< HEAD
     restart : on-failure
     networks:
       - inception
     volumes:
       - wordpress_db:/var/lib/mysql/
+=======
+    restart: on-failure
+    networks:
+      - inception
+    volumes:
+      - wordpress_db:/var/lib/mysql
+    env_file:
+      - .env
+>>>>>>> docs : remove useless files and use env variables
   wordpress:
     build: ./requirements/wordpress/.
     image: wordpress
@@ -29,10 +49,21 @@ services:
       - inception
     volumes:
       - wordpress_files:/var/www/
+<<<<<<< HEAD
   site:
     build: ./requirements/bonus/site/.
     image: shonjmoj.me
     container_name: shonjmoj.me
+=======
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+  site:
+    build: ./requirements/bonus/site/.
+    image: shonjmoj
+    container_name: shonjmoj
+>>>>>>> docs : remove useless files and use env variables
     ports:
       - '3000:3000'
     restart: on-failure
@@ -41,6 +72,7 @@ services:
 
 volumes:
   wordpress_db:
+<<<<<<< HEAD
     name : 'wordpress_db'
     driver_opts:
       type : type
@@ -56,3 +88,19 @@ volumes:
 networks:
   inception:
     name : inception
+=======
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: $HOME/data/wordpress_db
+  wordpress_files:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: $HOME/data/wordpress_files
+
+networks:
+  inception:
+>>>>>>> docs : remove useless files and use env variables
