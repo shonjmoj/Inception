@@ -1,6 +1,0 @@
-shonjmoj.me/Dockerfile
-shonjmoj.me/docker-compose.yaml
-shonjmoj.me/node_modules
-shonjmoj.me/.dockerignore
-shonjmoj.me/README.md
-shonjmoj.me/yarn.lock
