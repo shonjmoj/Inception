@@ -1,18 +1,5 @@
 FROM debian:buster
 
-<<<<<<< HEAD
-COPY shonjmoj.me .
-
-RUN apt-get update \
-    && apt-get install curl -y \
-    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash \
-    && apt-get install -y nodejs \
-    && npm install -g npm@9.3.1 && npm i
-
-EXPOSE 3000
-
-CMD [ "npm", "run", "dev" ]
-=======
 RUN apt-get update \
     && apt-get install curl git -y \
     && curl -fsSL https://deb.nodesource.com/setup_18.x | bash \
@@ -28,4 +15,3 @@ EXPOSE 3000
 RUN yarn
 
 CMD yarn build && yarn start
->>>>>>> docs : remove useless files and use env variables

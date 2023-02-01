@@ -1,21 +1,4 @@
 #!/bin/sh
-<<<<<<< HEAD
-if [ ! -d "/var/lib/mysql/wordpress_db" ]; then
-    service mysql start
-
-    mysql -e "CREATE DATABASE wordpress_db;"
-
-    mysql -e "CREATE USER 'shonjmoj'@'localhost' IDENTIFIED BY '123';"
-    mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'shonjmoj'@'localhost' WITH GRANT OPTION;"
-    mysql -e "CREATE USER 'shonjmoj'@'%' IDENTIFIED BY '123';"
-    mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'shonjmoj'@'%' WITH GRANT OPTION;"
-    mysql -e "FLUSH PRIVILEGES;"
-
-    mysql wordpress_db < db.sql
-
-    service mysql stop
-=======
-
 if [ ! -d "/var/lib/mysql/$DB_NAME" ]; then
     service mysql restart
 
@@ -39,7 +22,6 @@ if [ ! -d "/var/lib/mysql/$DB_NAME" ]; then
     echo "FLUSH PRIVILEGES; ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';" | mysql -u root
     pkill mysqld
 
->>>>>>> docs : remove useless files and use env variables
 fi
 
 mysqld_safe

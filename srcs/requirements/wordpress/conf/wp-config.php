@@ -18,17 +18,6 @@
  * @package WordPress
  */
 
-<<<<<<< HEAD
-// ** Database settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-define( 'DB_NAME', 'wordpress_db' );
-
-/** Database username */
-define( 'DB_USER', 'shonjmoj' );
-
-/** Database password */
-define( 'DB_PASSWORD', '123' );
-=======
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
@@ -39,7 +28,6 @@ define( 'DB_USER', getenv('MYSQL_USER') );
 
 /** Database password */
 define( 'DB_PASSWORD', getenv('MYSQL_PASSWORD'));
->>>>>>> docs : remove useless files and use env variables
 
 /** Database hostname */
 define( 'DB_HOST', 'mariadb' );
